@@ -155,9 +155,9 @@ def minimax(board):
         if terminal(board):
             return utility(board)
         v = float('-inf')
-        actions = actions(board)
-        print(f"max_value actions: {actions}")
-        for action in actions:
+        all_actions = actions(board)
+        print(f"max_value actions: {all_actions}")
+        for action in all_actions:
             print(action)
             v = max(v, min_value(result(board, action)))
         return v
@@ -166,9 +166,17 @@ def minimax(board):
         if terminal(board):
             return utility(board)
         v = float('inf')
-        actions = actions(board)
+        all_actions = actions(board)
         print(f"min_value actions: {actions}")
-        for action in actions:
+        for action in all_actions:
             print(action)
             v = min(v, max_value(result(board, action)))
         return v
+    
+    if player == X:
+        max_value(board)
+    else:
+        min_value(board)
+        
+
+minimax(initial_state())
