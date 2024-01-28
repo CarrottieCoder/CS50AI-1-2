@@ -1,6 +1,8 @@
 """
 Tic Tac Toe Player
 """
+# https://cs50.harvard.edu/ai/2024/projects/0/tictactoe/
+# https://cs50.harvard.edu/ai/2024/notes/0/
 
 #X is the max player!!!!!
 
