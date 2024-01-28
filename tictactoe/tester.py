@@ -173,10 +173,20 @@ def minimax(board):
             v = min(v, max_value(result(board, action)))
         return v
     
-    if player == X:
-        max_value(board)
-    else:
-        min_value(board)
+    if player(board) == X:
+        move = (None, float('-inf'))
+        for action in actions(board):
+            v = max_value(board)
+            if v > move[1]:
+                move = (action, v)
+        print(move)
+    else:   
+        move = (None, float('inf'))
+        for action in actions(board):
+            v = min_value(board)
+            if v < move[1]:
+                move = (action, v)
+        print(move)
         
 
 minimax(initial_state())
