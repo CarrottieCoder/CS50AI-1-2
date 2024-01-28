@@ -166,6 +166,7 @@ def minimax(board):
         return v
     
     if player(board) == X:
+        # X is the max player
         move = (None, float('-inf'))
         for action in actions(board):
             v = min_value(result(board, action))
