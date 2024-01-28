@@ -70,8 +70,44 @@ def winner(board):
     """
     Returns the winner of the game, if there is one.
     """
-    raise NotImplementedError
 
+    if not terminal(board):
+        return None
+    
+    number_of_EMPTYS = sum(sublist.count(EMPTY) for sublist in board)
+    if number_of_EMPTYS == 0:
+        print('Draw')
+        return None
+    
+    #ROWS (X is the max player)
+    for row in range(len(board)):
+        if board[row] == ["X", "X", "X"]:
+            return X
+        elif board[row] == ["O", "O", "O"]:
+            return O
+    
+    #COLS (X is the max player)
+    for col in range(len(board)):
+        if board[0][col] == board[1][col] == board[2][col] and board[0][col] != EMPTY:
+            if board[0][col] == X:
+                return X
+            elif board[0][col] == O:
+                return O
+    
+    #Check diagonal
+    if board[0][0] == board[1][1] == board[2][2] and board[0][0] != EMPTY:
+        # X is the max player
+        if board[0][0] == X:
+            return X
+        elif board[0][0] == O:
+            return O
+    
+    #Check the other diagonal
+    if board[0][2] == board[1][1] == board[2][0] and board[1][1] != EMPTY: 
+        if board[1][1] == X:
+            return X
+        elif board[1][1] == O:
+            return O
 
 
 def terminal(board):
