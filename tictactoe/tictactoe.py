@@ -1,7 +1,7 @@
 """
 Tic Tac Toe Player
 """
-#Works
+# Documentation: 
 # https://cs50.harvard.edu/ai/2024/projects/0/tictactoe/
 # https://cs50.harvard.edu/ai/2024/notes/0/
 
@@ -209,7 +209,7 @@ def minimax(board):
             if v > move[1]:
                 move = (action, v)
     else:   
-        #Working :) 
+        # O is the min player
         move = (None, float('inf'))
         for action in actions(board):
             v = max_value(result(board, action))
