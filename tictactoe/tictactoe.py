@@ -172,6 +172,7 @@ def minimax(board):
             if v > move[1]:
                 move = (action, v)
     else:   
+        #Not working efficently for some reason
         move = (None, float('inf'))
         for action in actions(board):
             v = max_value(result(board, action))
