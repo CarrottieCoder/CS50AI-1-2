@@ -55,6 +55,7 @@ def result(board, action):
     #Shallow copy
     new_board = [row[:] for row in board]
     try:
+        print(action)
         if new_board[action[0]][action[1]] == None:
             new_board[action[0]][action[1]] = player(board) 
             print(board)
@@ -145,20 +146,14 @@ def utility(board):
 
 
 def minimax(board):
-    
     if terminal(board):
         return None
-
-    print(f'In min_max: board {board}')
 
     def max_value(board):
         if terminal(board):
             return utility(board)
         v = float('-inf')
-        actions = actions(board)
-        print(f"max_value actions: {actions}")
-        for action in actions:
-            print(action)
+        for action in actions(board):
             v = max(v, min_value(result(board, action)))
         return v
 
@@ -166,9 +161,20 @@ def minimax(board):
         if terminal(board):
             return utility(board)
         v = float('inf')
-        actions = actions(board)
-        print(f"min_value actions: {actions}")
-        for action in actions:
-            print(action)
+        for action in actions(board):
             v = min(v, max_value(result(board, action)))
         return v
+    
+    if player(board) == X:
+        move = (None, float('-inf'))
+        for action in actions(board):
+            v = min_value(result(board, action))
+            if v > move[1]:
+                move = (action, v)
+    else:   
+        move = (None, float('inf'))
+        for action in actions(board):
+            v = max_value(result(board, action))
+            if v < move[1]:
+                move = (action, v)
+    return move[0]
